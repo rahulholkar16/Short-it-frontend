@@ -16,7 +16,11 @@ export default function Signup() {
         e.preventDefault(); // stop form reload
         const response = await executeFetch({ name, email, password });
         console.log("Signup response:", response);
-        nevigate('/login');
+        if (response.msg === "User added Successfully!"){
+            nevigate('/login');
+        } else {
+            alert(response.msg);
+        }
     }
     return (
         <main className="container">
