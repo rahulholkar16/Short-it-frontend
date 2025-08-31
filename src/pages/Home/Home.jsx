@@ -1,6 +1,10 @@
 import './Home.css'
 
 export default function Home() {
+
+    function dashboardfun () {
+        
+    }
     return (
         <>
             <section className="hero">
@@ -9,7 +13,7 @@ export default function Home() {
                     <p>Transform your long URLs into short, powerful links.
                         Manage everything with a simple dashboard.</p>
                     <div className="hero-buttons">
-                        <a className="btn primary getStarted">Get Started</a>
+                        <a className="btn primary getStarted" onClick={dashboardfun}>Get Started</a>
                         <a className="btn secondary heroLogin">Login</a>
                     </div>
                 </div>
