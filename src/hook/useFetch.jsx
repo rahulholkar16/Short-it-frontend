@@ -1,31 +1,34 @@
-import { useCallback, useEffect, useState } from "react"
-import { API_CONNECTION } from "../utils/api";
+import { useEffect, useState } from "react"
 
-export function useFetch(url, option, immediate = true) {
+export const useFetch = (url, immediate = true) => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(immediate);
+    const BASE_URL = "http://localhost:3000/"
 
-    const fetchData = useCallback(async (url, option) => {
-        setLoading(true);
-        setError(null);
+    useEffect(() => {
 
-        try {
-            const res = await API_CONNECTION(url, option);
-            const json = await res.json();
-            setData(json);
-            return json;
-        } catch (error) {
-            setError(error.message);
-        } finally {
-            setLoading(false);
-        }
-    }, [url, option]);
+        const fetchData = async () => {
+            try {
+                const res = await fetch(BASE_URL + url, { 
+                    method: "GET",
+                    credentials: "include",
+                });
+                const json = await res.json();
+                setData(json);
+            } catch (err) {
+                if (err.name !== 'AbortError') setError(err);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-    useEffect(()=>{
-        if(immediate && url) {
-            fetchData();
-        }
-    }, [url, option, immediate, fetchData]);
-    return { data, error, loading };
+        fetchData();
+
+        // Proper cleanup function
+        
+    }, [url]);
+
+
+    return { data, loading, error };
 }

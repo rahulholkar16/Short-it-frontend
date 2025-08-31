@@ -1,9 +1,19 @@
+import { useNavigate } from 'react-router-dom';
+import { useFetch } from '../../hook/useFetch'
 import './Home.css'
 
 export default function Home() {
+    const navigate = useNavigate();
 
-    function dashboardfun () {
-        
+    const { data, error } = useFetch('api/v1/dashboard', true);
+
+    function dashboardfun() {
+
+        if (data.success == false || error) {
+            navigate('/login')
+        } else {
+            navigate('/dashboard');
+        }
     }
     return (
         <>
