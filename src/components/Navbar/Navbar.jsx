@@ -13,7 +13,7 @@ function Navbar() {
                         <a id="navHistory">History</a>
                     </> :
                     <>
-                        <a className = "NavLogin">Login</a>
+                        <a className = "NavLogin" onClick={() => nevigate('/login')}>Login</a>
                         <a className="btn signup" onClick={() => nevigate('/signup')}>Signup</a>
                     </>}  
             </nav>
