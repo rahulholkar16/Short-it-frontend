@@ -5,7 +5,7 @@ import './Home.css'
 export default function Home() {
     const navigate = useNavigate();
 
-    const { data, error } = useFetch('api/v1/dashboard', true);
+    const { data, error } = useFetch('api/v1/dashboard', { method: "GET" }, true);
 
     function dashboardfun() {
 
@@ -24,7 +24,7 @@ export default function Home() {
                         Manage everything with a simple dashboard.</p>
                     <div className="hero-buttons">
                         <a className="btn primary getStarted" onClick={dashboardfun}>Get Started</a>
-                        <a className="btn secondary heroLogin">Login</a>
+                        <a className="btn secondary heroLogin" onClick={() => navigate('/login')}>Login</a>
                     </div>
                 </div>
 
