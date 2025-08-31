@@ -1,0 +1,162 @@
+.container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* Login Card */
+.auth-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 40px 32px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: center;
+}
+
+.auth-card h2 {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.auth-card p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 28px;
+}
+
+/* Input Fields */
+.auth-card input {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.auth-card input:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--acc);
+}
+
+/* Login Button */
+.auth-card .btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--acc), var(--acc-2));
+    color: #0a1022;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(108, 140, 255, 0.3);
+    transition: transform 0.08s ease, filter 0.2s ease;
+}
+
+.auth-card .btn:hover {
+    filter: brightness(1.05);
+}
+
+.auth-card .btn:active {
+    transform: translateY(1px);
+}
+
+/* Links */
+.auth-card .links {
+    margin-top: 18px;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.auth-card .links a {
+    color: var(--acc);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-card .links a:hover {
+    text-decoration: underline;
+}
+
+.form-logo {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 8px;
+    display: block;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 14px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 6px 2px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text);
+    outline: none;
+    font-size: 14px;
+    transition: border-color .2s, box-shadow .2s, background .2s;
+}
+
+.input-group input::placeholder {
+    color: rgba(231, 234, 244, 0.55);
+}
+
+.input-group input:focus {
+    border-color: var(--acc);
+    box-shadow: 0 0 0 6px var(--ring);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.links {
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.links a {
+  color: var(--acc);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.links a:hover {
+  filter: brightness(1.1);
+}
+
+/* Optional: error/helper chips */
+.form-error {
+  margin-top: 10px;
+  background: rgba(255, 107, 107, 0.08);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  color: #ffdede;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  display: none; /* toggle to block when needed */
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .auth-card { padding: 22px; }
+}
