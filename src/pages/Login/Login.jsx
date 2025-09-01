@@ -14,7 +14,6 @@ function Login() {
     async function login(e) {
         e.preventDefault(); // stop form reload
         const res = await executeFetch({ email, password });
-        console.log("Signup response:", res);
         if (res.msg == "Loging successfully!"){
             loginData(res.token)
             nevigate('/dashboard');
