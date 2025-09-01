@@ -8,7 +8,7 @@ function Navbar() {
 
     return (
         <header className="navbar">
-            <div className="logo">
+            <div className="logo" onClick={() => navigate("/dashboard")}>
                 Short<span>It</span>
             </div>
             <nav>
