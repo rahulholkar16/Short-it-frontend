@@ -1,18 +1,17 @@
 import { useState, useEffect } from 'react';
-import { useFetch } from '../../hook/useFetch'
-import './History.css'
+import { useFetch } from '../../hook/useFetch';
+import './History.css';
 
 export default function History() {
-    const [history, setHistory] = useState(null);
-    const { data, loading, error} = useFetch('api/v1/history', { method: "GET" }, true);
-    
-    // Update history only when data changes
+    const [history, setHistory] = useState([]);
+    const { data, loading, error } = useFetch('api/v1/history', { method: "GET" }, true);
+
+    // Update history when data changes
     useEffect(() => {
-        if (data) {
+        if (data && data.history) {
             setHistory(data.history);
         }
     }, [data]);
-    console.log(history);
     
     return (
         <main className="container">
@@ -20,24 +19,31 @@ export default function History() {
                 <h2>Your Link History</h2>
 
                 <div className="table-wrapper">
-                    <div className='history-row'>
-                        <div className="field">
-                            <label>Original Link</label>
-                            <span className="original">https://www.youtube.com</span>
-                        </div>
-                        <div className="field">
-                            <label>Short Link</label>
-                            <a href="localhost" className="short-link">http://localhost:3000/url/xyeh</a>
-                        </div>
-                        <div className="field">
-                            <label>Date</label>
-                            <span className="date">25/06/3056</span>
-                        </div>
-                    </div>
+                    {loading && <p>Loading...</p>}
+                    {error && <p className="error">{error}</p>}
 
+                    {history.length > 0 ? (
+                        history.map((item, i) => (
+                            <div key={i} className="history-row">
+                                <div className="field">
+                                    <label>Original Link</label>
+                                    <span className="original">{item.origenalUrl}</span>
+                                </div>
+                                <div className="field">
+                                    <label>Short Link</label>
+                                    <a href={`http://localhost:3000/url/${item.sortUrl}`} target="_blank" className="short-link">http://localhost:3000/url/{item.sortUrl}</a>
+                                </div>
+                                <div className="field">
+                                    <label>Date</label>
+                                    <span className="date">{new Date(item.createdAt).toLocaleDateString()}</span>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        !loading && <p>No history found</p>
+                    )}
                 </div>
             </div>
         </main>
-
-    )
+    );
 }
