@@ -1,24 +1,36 @@
-import { useState } from 'react'
-import './Navbar.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext"
+import "./Navbar.css";
+
 function Navbar() {
-    const [isLoggedin, setIsloggedin] = useState(false);
-    const nevigate = useNavigate();
+    const { isLoggedIn, logout } = useAuth();
+    const navigate = useNavigate();
+
     return (
         <header className="navbar">
-            <div className="logo">Short<span>It</span></div>
+            <div className="logo">
+                Short<span>It</span>
+            </div>
             <nav>
-                {isLoggedin ? <>
-                        <a id="dashboardnav">Dashboard</a>
-                        <a id="navHistory">History</a>
-                    </> :
+                {isLoggedIn ? (
                     <>
-                        <a className = "NavLogin" onClick={() => nevigate('/login')}>Login</a>
-                        <a className="btn signup" onClick={() => nevigate('/signup')}>Signup</a>
-                    </>}  
+                        <a onClick={() => navigate("/dashboard")}>Dashboard</a>
+                        <a onClick={() => navigate("/history")}>History</a>
+                        <a onClick={logout}>Logout</a>
+                    </>
+                ) : (
+                    <>
+                        <a className="NavLogin" onClick={() => navigate("/login")}>
+                            Login
+                        </a>
+                        <a className="btn signup" onClick={() => navigate("/signup")}>
+                            Signup
+                        </a>
+                    </>
+                )}
             </nav>
         </header>
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;

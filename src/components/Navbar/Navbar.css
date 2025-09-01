@@ -42,3 +42,35 @@
     font-weight: 700;
     box-shadow: 0 6px 15px rgba(108, 140, 255, 0.3);
 }
+
+.profile-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--acc);
+  color: #0a1022;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 8px;
+  box-shadow: var(--shadow);
+}
+
+.profile-menu:hover .dropdown {
+  display: block;
+}

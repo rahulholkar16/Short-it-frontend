@@ -23,7 +23,7 @@
 .history-row {
   display: grid;
   /* IMPORTANT: minmax(0, …) prevents long URLs from blowing up the grid */
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr) auto;
   align-items: center;
   gap: 16px;
 
@@ -45,6 +45,7 @@
 /* Label + value */
 .field {
   display: flex;
+  align-items: flex-start;
   flex-direction: column;
   gap: 6px;
 }

@@ -2,7 +2,9 @@ import { useState } from 'react'
 import './Login.css'
 import { useFetch } from '../../hook/useFetch';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 function Login() {
+    const { loginData } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -14,7 +16,9 @@ function Login() {
         const res = await executeFetch({ email, password });
         console.log("Signup response:", res);
         if (res.msg == "Loging successfully!"){
+            loginData(res.token)
             nevigate('/dashboard');
+
         } else {
             alert(res.msg);
         }
