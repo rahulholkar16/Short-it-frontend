@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 
 export const useFetch = (url, options = {}, immediate = true) => {
-    const BASE_URL = "http://localhost:3000/";
+    const BASE_URL = "https://short-it-backend.vercel.app/";
 
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
@@ -19,6 +19,7 @@ export const useFetch = (url, options = {}, immediate = true) => {
                     headers: {
                         "Content-Type": "application/json",
                         ...(options.headers || {}),
+                        credentials: "include"
                     },
                     body: bodyData ? JSON.stringify(bodyData) : options.body,
                     credentials: "include", // for cookies / sessions

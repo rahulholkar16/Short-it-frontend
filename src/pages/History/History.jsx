@@ -31,7 +31,7 @@ export default function History() {
                                 </div>
                                 <div className="field">
                                     <label>Short Link</label>
-                                    <a href={`http://localhost:3000/url/${item.sortUrl}`} target="_blank" className="short-link">http://localhost:3000/url/{item.sortUrl}</a>
+                                    <a href={`https://short-it-backend.vercel.app/url/${item.sortUrl}`} target="_blank" className="short-link">https://short-it-backend.vercel.app/url/{item.sortUrl}</a>
                                 </div>
                                 <div className="field">
                                     <label>Date</label>
