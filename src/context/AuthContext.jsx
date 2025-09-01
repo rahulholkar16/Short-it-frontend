@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import Cookies from "js-cookie";
+import { useFetch } from "../hook/useFetch";
 
 const AuthContext = createContext();
 
@@ -7,21 +7,35 @@ export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     // Check token on mount
-    useEffect(() => {
-        const token = Cookies.get("token");
-        setIsLoggedIn(!!token);
-    }, []);
+    const { executeFetch: checkAuth } = useFetch("api/v1/isLog", { method: "POST" }, false);
+    const { executeFetch: doLogout } = useFetch("api/v1/logout", { method: "POST" }, false);
 
-    // Login function
-    const loginData = (token) => {
-        Cookies.set("token", token, { expires: 7 }); // store for 7 days
-        setIsLoggedIn(true);
+    useEffect(() => {
+        const verifyAuth = async () => {
+            const res = await checkAuth();
+            if (res?.success) {
+                setIsLoggedIn(true);
+            } else {
+                setIsLoggedIn(false);
+            }
+        };
+        verifyAuth();
+    }, [checkAuth]);
+
+    // Login function (you’d normally pass credentials here)
+    const loginData = async () => {
+        const res = await checkAuth();
+        if (res?.success) {
+            setIsLoggedIn(true);
+        }
     };
 
     // Logout function
-    const logout = () => {
-        Cookies.remove("token", { path: "/" });
-        setIsLoggedIn(false);
+    const logout = async () => {
+        const res = await doLogout();
+        if (res?.success) {
+            setIsLoggedIn(false);
+        }
     };
 
     return (
