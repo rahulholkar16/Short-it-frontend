@@ -57,7 +57,7 @@ export default function Dashboard() {
 
             if (res.msg === "Url shorted!") {
                 const code = res.data.sortUrl;
-                const shortHref = `http://localhost:3000${SHORT_PATH_PREFIX}${code}`;
+                const shortHref = `https://short-it-backend.vercel.app${SHORT_PATH_PREFIX}${code}`;
                 setShorturl(shortHref);
 
                 if (notesRef.current) {
