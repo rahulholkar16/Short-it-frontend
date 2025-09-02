@@ -13,7 +13,7 @@ export default function Dashboard() {
     const [error, setError] = useState(null);
     const [shortUrl, setShorturl] = useState("");
 
-    const { executeFetch } = useFetch('api/v1/short', { method: "POST" }, false);
+    const { loading, executeFetch } = useFetch('api/v1/short', { method: "POST" }, false);
 
     const SHORT_PATH_PREFIX = "/url/";
 
@@ -134,7 +134,7 @@ export default function Dashboard() {
 
                 <div className="actions" style={{ marginTop: "8px" }}>
                     <button className="btn ghost" type="button" onClick={clearURL}>Clear</button>
-                    <button className="btn" type="button" onClick={short}>Shorten URL</button>
+                    <button className="btn" type="button" onClick={short}>{loading ? "Shorting...":"Shorten URL"}</button>
                 </div>
 
                 <div className="result" ref={shorturldivRef} style={{ display: 'none' }}>

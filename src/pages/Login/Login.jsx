@@ -42,7 +42,7 @@ function Login() {
                     </div>
 
                     <div >
-                        <button className="btn primary login" onClick={login}>Login</button>
+                        <button className="btn primary login" onClick={login}>{loading ? "Loging..." : "Login"}</button>
                     </div>
 
 
