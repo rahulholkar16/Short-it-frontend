@@ -11,7 +11,7 @@ export default function Signup() {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
-    const { executeFetch } = useFetch('api/v1/signup', {
+    const { loading, executeFetch } = useFetch('api/v1/signup', {
         method: "POST",
     }, false);
 
@@ -102,7 +102,7 @@ export default function Signup() {
                     </div>
 
                     <div>
-                        <button className="btn primary signup" onClick={signup}>Create Account</button>
+                        <button className="btn primary signup" onClick={signup}>{loading ? "Wait...":"Create Account"}</button>
                     </div>
                 </form>
 
