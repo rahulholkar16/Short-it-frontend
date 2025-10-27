@@ -5,3 +5,7 @@ footer {
     font-size: 14px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
+
+a {
+    color: var(--muted);
+}
