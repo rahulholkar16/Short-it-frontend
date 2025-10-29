@@ -2,7 +2,7 @@ import './Footer.css'
 export default function Footer() {
   return (
       <footer>
-          <p>© 2025 ShortIt | Built with ❤️ using Node.js & MongoDB | Made By <a href="https://www.linkedin.com/in/rahulpal01">Rahul</a></p>
+          <p>© 2025 ShortIt | Built with ❤️ using Node.js & MongoDB</p>
       </footer>
   )
 }
