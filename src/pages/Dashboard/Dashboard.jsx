@@ -12,7 +12,6 @@ export default function Dashboard() {
     const [url, setUrl] = useState("");
     const [error, setError] = useState(null);
     const [shortUrl, setShorturl] = useState("");
-
     const { loading, executeFetch } = useFetch('api/v1/short', { method: "POST" }, false);
 
     const SHORT_PATH_PREFIX = "/url/";
@@ -55,7 +54,8 @@ export default function Dashboard() {
                 return;
             }
 
-            if (res.msg === "Url shorted!") {
+            if (res.msg === "Url shortened successfully!") {
+                
                 const code = res.data.sortUrl;
                 const shortHref = `https://sh-it.vercel.app${SHORT_PATH_PREFIX}${code}`;
                 setShorturl(shortHref);
@@ -137,7 +137,7 @@ export default function Dashboard() {
                     <button className="btn" type="button" onClick={short}>{loading ? "Shorting...":"Shorten URL"}</button>
                 </div>
 
-                <div className="result" ref={shorturldivRef} style={{ display: 'none' }}>
+                <div className="result" ref={shorturldivRef} style={{ display: "none" }}>
                     <div className="row" style={{ marginTop: "12px" }}>
                         <div className="short-url">{shortUrl}</div>
                         <button className="btn ghost" ref={copyBtn} type="button" onClick={copy}>Copy</button>
